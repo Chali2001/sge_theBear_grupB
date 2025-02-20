@@ -9,10 +9,6 @@ def connection_db():
         )
     return conn
 
-# Call the function to test the connection
-connection = connection_db()
-print(connection)
-connection.close()
-print(connection)
+
 
 

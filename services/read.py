@@ -22,4 +22,4 @@ def registre():
         }
     }
 
-    return read_sch.schema(users)
+    return read_sch.schemas(users)

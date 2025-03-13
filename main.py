@@ -1,10 +1,10 @@
-from typing import List
-from fastapi import FastAPI
-from services import read
+from fastapi import FastAPI, Depends
+from sqlmodel import SQLModel, create_engine, Session
+from dotenv import load_dotenv
+from services import user
+import os
 
-app = FastAPI()
+load_dotenv()
 
-@app.get("/root", response_model=List[dict])
-async def read_root():
-    result = read.registre()
-    return result
+DATABASE_URL = os.getenv("DATABASE_URL")
+engine = create_engine(DATABASE_URL)

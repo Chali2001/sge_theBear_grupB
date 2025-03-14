@@ -26,7 +26,7 @@ def read_user(db:Session = Depends(get_db)):
     result = user.get_all_users(db)
     return result
 
-@app.get("/users/", response_model=dict)
+@app.post("/users/", response_model=dict)
 def create_user(name: str, email:str, db:Session = Depends(get_db)):
     result = user.add_new_user(name, email, db)
     return result

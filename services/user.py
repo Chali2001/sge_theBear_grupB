@@ -9,7 +9,7 @@ def get_all_users(db:Session):
 
 def add_new_user(name: str, email:str, db:Session):
     db_user = User(name=name, email=email)
-    db.add(db.user)
+    db.add(db_user)
     db.commit()
-    db.refresh(db.user)
-    return {"Created user Succesfully"}
+    db.refresh(db_user)
+    return {"Message":"Created user Succesfully"}

@@ -38,13 +38,3 @@ def read_user (db:Session = Depends(get_db)):
 def create_user(name: str, email:str,db:Session = Depends(get_db)):
     result = user.add_new_user(name, email, db)
     return result
-
-@app.put("/users/", response_model=dict)
-async def update_user(name: str, newName: str, db:Session = Depends(get_db)):
-    result = user.update_user(name, newName, db)
-    return result
-
-@app.delete("/users/", response_model=dict)
-async def update_user(id: int, db:Session = Depends(get_db)):
-    result = user.delete_user(id, db)
-    return result

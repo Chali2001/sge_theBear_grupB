@@ -45,6 +45,6 @@ async def update_user(name: str, newName: str, db:Session = Depends(get_db)):
     return result
 
 @app.delete("/users/", response_model=dict)
-async def update_user(id: int, db:Session = Depends(get_db)):
+async def delete_user(id: int, db:Session = Depends(get_db)):
     result = user.delete_user(id, db)
     return result

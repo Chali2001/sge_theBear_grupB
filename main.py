@@ -40,10 +40,12 @@ def create_user(name: str, email:str,db:Session = Depends(get_db)):
     return result
 
 @app.put("/users/{user_id}", response_model=dict)
-async def update_user_email(
-        user_id: int,
-        email: str,
-        db: Session = Depends(get_db)
-):
+async def update_user(user_id: int, email: str, db: Session = Depends(get_db)):
     result = user.update_user_email(user_id, email, db)
     return result
+
+@app.delete("/users/{user_id}", response_model=dict)
+async def delete_user(user_id: int, db: Session = Depends(get_db)):
+    result = user.delete_user_by_id(user_id, db)
+    return result
+

@@ -9,3 +9,10 @@
 ![alt text](imatges/13_03.png)
 
 ![alt text](imatges/13_03_cap2.png)
+
+### Resultat Final: CRUD taula user
+
+![alt text](imatges/20_03_cap2.png)
+
+![alt text](imatges/20_03_cap1.png)
+

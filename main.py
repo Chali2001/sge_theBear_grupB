@@ -34,5 +34,17 @@ def create_user(name:str, email:str, db:Session = Depends(get_db)):
     result = user.add_new_user(name, email, db)
     return result
 
+@app.put("/users/{user_id}", response_model=dict)
+def update_user(user_id: int, name: str, email: str, db: Session = Depends(get_db)):
+    result = user.update_user(user_id, name, email, db)
+    return result
+
+@app.delete("/users/{user_id}")
+def delete_user(user_id: int, db: Session = Depends(get_db)):
+    result = user.delete_user(user_id, db)
+    return {"message": "Usuari eliminat correctament"}
+
+
+
 
 

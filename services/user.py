@@ -2,30 +2,33 @@ from schema.users_sch import users_schema
 from sqlmodel import Session, select
 from models.User import User
 
-def get_all_users(db:Session):
+
+def get_all_users(db: Session):
     sql_read = select(User)
     users = db.exec(sql_read).all()
     return users_schema(users)
 
-def add_new_user(name: str, email:str, db:Session):
+
+def add_new_user(name: str, email: str, db: Session):
     db_user = User(name=name, email=email)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
-    return {"message":"Created user succesfully"}
+    return {"message": "Created user succesfully"}
 
-def update_user(user_id: int, name: str, email: str, db: Session):
-    db_user = db.exec(select(User).where(User.id == user_id)).first()
-    db_user.name = name
-    db_user.email = email
-    db.add(db_user)
+
+def update_user(identifier: int, name: str, db: Session):
+    sql_select = select(User).where(User.id == identifier)
+    user_db = db.exec(sql_select).one()
+    user_db.name = name
+    db.add(user_db)
     db.commit()
-    db.refresh(db_user)
-    return {"message":"User update succesfully"}
+    return {"message": "Update user succesfully"}
 
 
-def delete_user(user_id: int, db: Session):
-    db_user = db.exec(select(User).where(User.id == user_id)).first()
-    db.delete(db_user)
+def delete_user(identifier: int, db: Session):
+    sql_select = select(User).where(User.id == identifier)
+    user_db = db.exec(sql_select).one()
+    db.delete(user_db)
     db.commit()
-    return {"message":"User delete succesfully"}
+    return {"message": "Delete user succesfully"}

@@ -34,15 +34,15 @@ def create_user(name:str, email:str, db:Session = Depends(get_db)):
     result = user.add_new_user(name, email, db)
     return result
 
-@app.put("/users/{user_id}", response_model=dict)
-def update_user(user_id: int, name: str, email: str, db: Session = Depends(get_db)):
-    result = user.update_user(user_id, name, email, db)
+@app.put("/update_user/", response_model=dict)
+async def update_user(id:int, name:str, db:Session = Depends(get_db)):
+    result = user.update_user(id, name, db)
     return result
 
-@app.delete("/users/{user_id}")
-def delete_user(user_id: int, db: Session = Depends(get_db)):
-    result = user.delete_user(user_id, db)
-    return {"message": "Usuari eliminat correctament"}
+@app.delete("/users/delete/", response_model=dict)
+async def delete_user(id:int, db:Session = Depends(get_db)):
+    result = user.delete_user(id,db)
+    return result
 
 
 

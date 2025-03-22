@@ -12,7 +12,7 @@
 
 ### Resultat Final: CRUD taula user
 
-![alt text](imatges/20_03_cap2.png)
-
 ![alt text](imatges/20_03_cap1.png)
+
+![alt text](imatges/20_03_cap2.png)
 

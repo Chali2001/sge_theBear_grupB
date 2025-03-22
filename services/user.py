@@ -14,23 +14,19 @@ def add_new_user(name: str, email: str, db:Session):
     db.refresh(db_user)
     return {"message": "Created user successfully"}
 
-def update_user(name: str, newName: str,db:Session):
-    statement = select(User).where(User.name == name)
-    results = db.exec(statement)
-    user = results.first()
-    if user is None:
-        return {"Message": "No encontrado"}
-    user.name = newName
-    db.add(user)
+def update_user(id: int, name: str,db:Session):
+    sql_select = select(User).where(User.id == id)
+    user_db = db.exec(sql_select).one()
+
+    user_db.name = name
+    db.add(user_db)
     db.commit()
-    return {"Message": "user updated"}
+    return {"Message": "Updated user succesfully"}
 
 def delete_user(id: int, db:Session):
-    statement = select(User).where(User.id == id)
-    results = db.exec(statement)
-    user = results.first()
-    if user is None:
-        return {"Message": "No encontrado"}
-    db.delete(user)
+    sql_select = select(User).where(User.id == id)
+    user_db = db.exec(sql_select).one()
+
+    db.delete(user_db)
     db.commit()
-    return {"Message": "User deleted"}
+    return {"Message": "Deleted user succesfully"}

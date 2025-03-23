@@ -1,6 +1,3 @@
-from requests import session
-from sqlalchemy import Engine
-
 from schema.users_sch import users_schema
 from sqlmodel import Session, select
 from models.User import User
@@ -17,11 +14,19 @@ def add_new_user(name: str, email:str, db:Session):
     db.refresh(db_user)
     return {"Message":"Created user Succesfully"}
 
-async def update_user():
-        with Session(Engine) as session:
-            statement = select(User).where(User.name == "Spider-Boy")
-            results = session.exec(statement)
-            return {"Message": "Updated Succesfully"}
+def update_user(id:int, name:str, db:Session):
+    sql_select = select(User).where(User.id == id)
+    user_db = db.exec(sql_select).one()
 
-            session.add(user)
-            session.commit()
+    user_db.name = name
+    db.add(user_db)
+    db.commit()
+    return {"Message": "updated user succesfully"}
+
+def delete_user(id:int, db:Session):
+    sql_select = select(User).where(User.id == id)
+    user_db = db.exec(sql_select).one()
+
+    db.delete(user_db)
+    db.commit()
+    return {"msg":"Deleted user succesfully"}

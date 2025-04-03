@@ -1,7 +1,8 @@
+from typing import List
 import fastapi import FastAPI, Depends
 from sqlmodel import SQLModel, create_engine, Session
 from dotenv import load_dotenv
-from services import user
+from services import read, user, update, delete
 import os
 
 #Carrega variables d'entorn des del fitxer .env

@@ -1,10 +1,12 @@
 from typing import List
-import fastapi import FastAPI, Depends
+from services import empleado
+from fastapi import FastAPI, Depends
 from sqlmodel import SQLModel, create_engine, Session
 from dotenv import load_dotenv
-from services import read, empleat, update, delete
+
 import os
 
+app = FastAPI()
 #Carrega variables d'entorn des del fitxer .env
 load_dotenv()
 
@@ -26,7 +28,28 @@ def get_db():
         db.close()
 
 
-@app.get("/empleados/", response_model= list[dict])
+@app.get("/empleados", response_model= list[dict])
 def read_empleat(db:Session = Depends(get_db)):
-    result = empleat.get_all_empleats(db)
+    result = empleado.get_all_empleados(db)
     return result
+
+#CREAR EMPLEADO
+@app.post("/empleado/")
+def create_empleado(ID_empleado: int, nombre: str, cargo: str, ss:int, sueldo: str, db:Session = Depends(get_db)):
+    result = empleado.add_new_empleado(ID_empleado, nombre, cargo,ss,sueldo,db)
+    return result
+
+
+#UPDATE EMPLEADO
+@app.put("/empleado/crear/{id}", response_model= dict)
+async def update_empleado(id:int, nombre: str, cargo:str, ss: int, sueldo: int, db:Session = Depends(get_db)):
+    result = empleado.update_empleado(id,nombre,cargo,ss, sueldo)
+    return result
+
+#DELETE EMPLEADO
+@app.delete("/empleado/delete/{id}", response_model=dict)
+async def delete_empleado(id:int, db:Session = Depends(get_db)):
+    result = empleado.delete_empleado(id, db)
+    return result
+
+

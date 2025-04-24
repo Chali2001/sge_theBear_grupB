@@ -8,4 +8,4 @@ def schema(emp) -> dict:
     return send_emp
 
 def schemas(empleados) -> list[dict]:
-    return [schema(empleado) for k, empleado in empleados.items()]
+    return [schema(empleado) for k,empleado in empleados.items()]

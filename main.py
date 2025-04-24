@@ -5,6 +5,8 @@ from dotenv import load_dotenv
 from services import read, Punto_Venta, update, delete,
 import os
 
+app = FastAPI()
+
 #Carrega variables d'entorn des del fitxer .env
 load_dotenv()
 
@@ -25,8 +27,49 @@ def get_db():
     finally:
         db.close()
 
+# CRUD DE PUNTO DE VENTA
+
+# GET PUNTO DE VENTA
 @app.get("/puntoVenta", response_model=List[dict])
 async def read_puntoVenta (db:Session = Depends(get_db)):
     result = Punto_Venta.get_all_punts(db)
+    return result
+
+@app.get("/puntoVenta/{id}", response_model=dict)
+async def read_puntoVenta_id(id: int, db:Session = Depends(get_db)):
+    result = Punto_Venta.get_punto(id, db)
+    return result
+
+# CREATE PUNTO DE VENTA
+@app.post("/puntoVenta", response_model=dict)
+async def create_puntoVenta(id_pedido: int, reserva: bool, id_factura: int, db:Session = Depends(get_db)):
+    result = Punto_Venta.add_new_punto(id_pedido, reserva, id_factura, db)
+    return result
+
+# UPDATE PUNTO DE VENTA
+@app.put("/puntoVenta/{id}", response_model=dict)
+async def update_puntoVenta(id: int, id_pedido: int, reserva: bool, id_factura: int, db:Session = Depends(get_db)):
+    result = Punto_Venta.update_punto(id, id_pedido, reserva, id_factura, db)
+    return result
+
+@app.put("/puntoVenta/reserva/{id}", response_model=dict)
+async def update_puntoVenta_reserva(id: int, reserva: bool, db:Session = Depends(get_db)):
+    result = Punto_Venta.update_punto_reserva(id, reserva, db)
+    return result
+
+@app.put("/puntoVenta/id_factura/{id}", response_model=dict)
+async def update_puntoVenta_id_factura(id: int, id_factura: int, db:Session = Depends(get_db)):
+    result = Punto_Venta.update_punto_id_factura(id, id_factura, db)
+    return result
+@app.put("/puntoVenta/id_pedido/{id}", response_model=dict)
+async def update_puntoVenta_id_pedido(id: int, id_pedido: int, db:Session = Depends(get_db)):
+    result = Punto_Venta.update_punto_id_pedido(id, id_pedido, db)
+    return result
+
+# DELETE PUNTO DE VENTA
+@app.delete("/puntoVenta/{id}", response_model=dict)
+async def delete_puntoVenta(id: int, db:Session = Depends(get_db)):
+    result = Punto_Venta.delete_punto(id, db)
+    return result
 
 

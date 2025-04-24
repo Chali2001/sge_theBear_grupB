@@ -2,7 +2,7 @@ from typing import List
 import fastapi import FastAPI, Depends
 from sqlmodel import SQLModel, create_engine, Session
 from dotenv import load_dotenv
-from services import read, user, update, delete
+from services import read, Punto_Venta, update, delete,
 import os
 
 #Carrega variables d'entorn des del fitxer .env
@@ -24,4 +24,9 @@ def get_db():
         yield db
     finally:
         db.close()
+
+@app.get("/puntoVenta", response_model=List[dict])
+async def read_puntoVenta (db:Session = Depends(get_db)):
+    result = Punto_Venta.get_all_punts(db)
+
 

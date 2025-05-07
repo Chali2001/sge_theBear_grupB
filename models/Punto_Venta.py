@@ -1,7 +1,6 @@
 from sqlmodel import SQLModel, Field
 from typing import Optional
 from models import Factura
-from models import Pedido
 from typing import Optional
 
 class Punto_Venta(SQLModel, table=True):

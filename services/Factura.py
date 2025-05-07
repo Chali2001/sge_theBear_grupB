@@ -22,7 +22,7 @@ def add_new_factura(costo: float, fecha: str, estado: EstadoFactura, db: Session
     return {"message": "Invoice created successfully"}
 
 # UPDATE FACTURA
-def update_factura(id: int, costo: float, fecha: date, estado: EstadoFactura, db: Session):
+def update_factura(id: int, costo: float, fecha: str, estado: EstadoFactura, db: Session):
     sql_select = select(Factura).where(Factura.id == id)
     factura_db = db.exec(sql_select).one()
 
@@ -42,7 +42,7 @@ def update_factura_costo(id: int, costo: float, db: Session):
     db.commit()
     return {"message": "Invoice cost updated successfully"}
 
-def update_factura_fecha(id: int, fecha: date, db: Session):
+def update_factura_fecha(id: int, fecha: str, db: Session):
     sql_select = select(Factura).where(Factura.id == id)
     factura_db = db.exec(sql_select).one()
 

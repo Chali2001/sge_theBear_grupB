@@ -30,6 +30,8 @@ def get_db():
     finally:
         db.close()
 
+
+
 # CRUD DE PUNTO DE VENTA
 
 # GET PUNTO DE VENTA
@@ -96,12 +98,12 @@ async def create_factura(costo: int, fecha: str,estado: EstadoFactura, db:Sessio
 
 # UPDATE FACTURA
 @app.put("/factura/{id}", response_model=dict)
-async def update_factura(id: int, id_pedido: int, reserva: bool, id_factura: int, estado: EstadoFactura, db:Session = Depends(get_db)):
-    result = Factura.update_factura(id, id_pedido, reserva, id_factura, estado, db)
+async def update_factura(id: int, costo: float, fecha: str, estado: EstadoFactura, db:Session = Depends(get_db)):
+    result = Factura.update_factura(id, costo, fecha, estado, db)
     return result
 
 @app.put("/factura/costo/{id}", response_model=dict)
-async def update_factura_costo(id: int, costo: bool, db:Session = Depends(get_db)):
+async def update_factura_costo(id: int, costo: float, db:Session = Depends(get_db)):
     result = Factura.update_factura_costo(id, costo, db)
     return result
 

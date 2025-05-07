@@ -6,6 +6,7 @@ from models.Punto_Venta import Punto_Venta
 def get_all_punts(db:Session):
     sql_read = select(Punto_Venta)
     punts = db.exec(sql_read).all()
+    return puntos_schema(punts)
 
 def get_punto(id: int, db:Session):
     sql_select = select(Punto_Venta).where(Punto_Venta.id == id)
@@ -39,7 +40,7 @@ def update_punto_reserva(id: int, reserva: bool, db:Session):
     punto_db.reserva = reserva
     db.add(punto_db)
     db.commit()
-    return {"Message": "Updated Point of sale succesfully"}
+    return {"Message": "Point of Sale reservation updated successfully"}
 
 def update_punto_id_factura(id: int, id_factura: int, db:Session):
     sql_select = select(Punto_Venta).where(Punto_Venta.id == id)
@@ -48,7 +49,7 @@ def update_punto_id_factura(id: int, id_factura: int, db:Session):
     punto_db.id_factura = id_factura
     db.add(punto_db)
     db.commit()
-    return {"Message": "Updated Point of sale succesfully"}
+    return {"Message": "Point of Sale invoice updated successfully"}
 
 def update_punto_id_pedido(id: int, id_pedido: int, db:Session):
     sql_select = select(Punto_Venta).where(Punto_Venta.id == id)
@@ -57,7 +58,7 @@ def update_punto_id_pedido(id: int, id_pedido: int, db:Session):
     punto_db.id_pedido = id_pedido
     db.add(punto_db)
     db.commit()
-    return {"Message": "Updated Point of sale succesfully"}
+    return {"Message": "Point of Sale order updated successfully"}
 
 # DELETE PUNTO DE VENTA
 def delete_punto(id: int, db:Session):

@@ -73,3 +73,14 @@ async def delete_puntoVenta(id: int, db:Session = Depends(get_db)):
     return result
 
 
+# CRUD DE FACTURA
+@app.get("/factura", response_model=List[dict])
+async def read_factura(db:Session = Depends(get_db)):
+    result = read.get_all_facturas(db)
+    return result
+
+@app.get("/factura/{id}", response_model=dict)
+async def read_factura_id(id: int, db:Session = Depends(get_db)):
+    result = read.get_factura(id, db)
+    return result
+

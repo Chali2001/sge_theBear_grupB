@@ -14,7 +14,7 @@ def get_factura(id: int, db: Session):
     return factura_db
 
 # CREATE FACTURA
-def add_new_factura(costo: float, fecha: date, estado: EstadoFactura, db: Session):
+def add_new_factura(costo: float, fecha: str, estado: EstadoFactura, db: Session):
     new_factura = Factura(costo=costo, fecha=fecha, estado=estado)
     db.add(new_factura)
     db.commit()

@@ -2,7 +2,10 @@ from typing import List
 from fastapi import FastAPI, Depends
 from sqlmodel import SQLModel, create_engine, Session
 from dotenv import load_dotenv
+
+from models.Factura import EstadoFactura
 from services import Punto_Venta, Factura
+from models import Factura
 import os
 
 app = FastAPI()
@@ -87,27 +90,29 @@ async def read_factura_id(id: int, db:Session = Depends(get_db)):
 
 # CREATE FACTURA
 @app.post("/factura", response_model=dict)
-async def create_factura(id_pedido: int, reserva: bool, id_factura: int, db:Session = Depends(get_db)):
-    result = Factura.add_new_factura(id_pedido, reserva, id_factura, db)
+async def create_factura(costo: int, fecha: str,estado: EstadoFactura, db:Session = Depends(get_db)):
+    result = Factura.add_new_factura(costo, fecha, estado, db)
     return result
 
 # UPDATE FACTURA
 @app.put("/factura/{id}", response_model=dict)
-async def update_factura(id: int, id_pedido: int, reserva: bool, id_factura: int, db:Session = Depends(get_db)):
-    result = Factura.update_factura(id, id_pedido, reserva, id_factura, db)
+async def update_factura(id: int, id_pedido: int, reserva: bool, id_factura: int, estado: EstadoFactura, db:Session = Depends(get_db)):
+    result = Factura.update_factura(id, id_pedido, reserva, id_factura, estado, db)
     return result
 
-@app.put("/factura/reserva/{id}", response_model=dict)
-async def update_factura_reserva(id: int, reserva: bool, db:Session = Depends(get_db)):
-    result = Factura.update_factura_reserva(id, reserva, db)
+@app.put("/factura/costo/{id}", response_model=dict)
+async def update_factura_costo(id: int, costo: bool, db:Session = Depends(get_db)):
+    result = Factura.update_factura_costo(id, costo, db)
     return result
-@app.put("/factura/id_factura/{id}", response_model=dict)
-async def update_factura_id_factura(id: int, id_factura: int, db:Session = Depends(get_db)):
-    result = Factura.update_factura_id_factura(id, id_factura, db)
+
+@app.put("/factura/fecha/{id}", response_model=dict)
+async def update_factura_fecha(id: int, fecha: str, db:Session = Depends(get_db)):
+    result = Factura.update_factura_fecha(id, fecha, db)
     return result
-@app.put("/factura/id_pedido/{id}", response_model=dict)
-async def update_factura_id_pedido(id: int, id_pedido: int, db:Session = Depends(get_db)):
-    result = Factura.update_factura_id_pedido(id, id_pedido, db)
+
+@app.put("/factura/estado/{id}", response_model=dict)
+async def update_factura_estado(id: int, estado: EstadoFactura, db:Session = Depends(get_db)):
+    result = Factura.update_factura_estado(id, estado, db)
     return result
 
 # DELETE FACTURA

@@ -11,7 +11,7 @@ class EstadoFactura(str, Enum):
 class Factura(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)
     costo: float
-    fecha: date
+    fecha: str
     estado: EstadoFactura
 
 

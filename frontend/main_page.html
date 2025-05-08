@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERP - Pàgina Principal</title>
+    <link rel="stylesheet" href="ususaris/styles_main_page.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="erp-container">
+        <!-- Capçalera Odoo-style -->
+        <header class="erp-header">
+            <div class="erp-logo">ERP System</div>
+            <nav class="erp-nav">
+                <a href="#" class="active">Inici</a>
+                <a href="#">Vendes</a>
+                <a href="/ususaris/index_form.html">Usuaris</a>
+                <a href="#">Inventari</a>
+            </nav>
+            <div class="erp-user">Admin</div>
+        </header>
+
+        <!-- Contingut principal -->
+        <main class="erp-dashboard">
+            <h1>Mòduls Principals</h1>
+
+            <!-- Grid de mòduls -->
+            <div class="module-grid">
+                <!-- Mòdul d'Usuaris -->
+                <div class="erp-module" id="usersModule">
+                    <div class="module-icon">
+                        <span class="material-icons">group</span>
+                    </div>
+                    <h2>Usuaris</h2>
+                    <p>Gestió d'usuaris i permisos</p>
+                </div>
+
+                <!-- Altres mòduls (exemple
+                <div class="erp-module">
+                    <div class="module-icon">
+                        <span class="material-icons">shopping_cart</span>
+                    </div>
+                    <h2>Vendes</h2>
+                    <p>Gestioneu comandes i clients</p>
+                </div>
+
+                <div class="erp-module">
+                    <div class="module-icon">
+                        <span class="material-icons">inventory</span>
+                    </div>
+                    <h2>Inventari</h2>
+                    <p>Control d'estoc i productes</p>) -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script_main_page.js"></script>
+</body>
+</html>

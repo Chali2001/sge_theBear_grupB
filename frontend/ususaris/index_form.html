@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Nou Usuari</title>
+    <link rel="stylesheet" href="style_form.css">
+</head>
+<body>
+    <div class="erp-container">
+            <!-- Capçalera Odoo-style -->
+            <header class="erp-header">
+                <div class="erp-logo">ERP System</div>
+                <nav class="erp-nav">
+                    <a href="../main_page.html">Inici</a>
+                    <a href="#">Vendes</a>
+                    <a href="../ususaris/index_form.html">Usuaris</a>
+                    <a href="#">Inventari</a>
+                </nav>
+                <div class="erp-user">Admin</div>
+            </header>
+        <div class="container">
+            <h1>Crear Nou Usuari</h1>
+            <form id="userForm">
+                <div class="form-group">
+                    <label for="name">Nom:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="age">Edat:</label>
+                    <input type="number" id="age" name="age" min="1" max="120" required>
+                </div>
+                 <div class="form-group">
+                    <label for="description">Descripció:</label>
+                    <textarea id="description" name="description" rows="3" placeholder="Descripció opcional de l'usuari..."></textarea>
+                 </div>
+                <button type="submit">Crear Usuari</button>
+                </br></br>
+                <div class="action-buttons">
+                <button><a href="index_table_users.html" class="action-btn">
+                    SHOW TABLE USERS
+                </a></button>
+             </div>
+            </form>
+            <div id="message" class="message"></div>
+        </div>
+    </div>
+
+    <script src="script_form.js"></script>
+</body>
+</html>

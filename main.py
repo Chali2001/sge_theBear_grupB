@@ -28,28 +28,38 @@ def get_db():
         db.close()
 
 
+#TODOS LOS EMPLEADOS GET CORRECTE
 @app.get("/empleados", response_model= list[dict])
 def read_empleat(db:Session = Depends(get_db)):
     result = empleado.get_all_empleados(db)
     return result
 
-#CREAR EMPLEADO
+
+#EMPLEADO POR ID
+@app.get("/empleados/{id}")
+def read_empleadoid(id: int, db:Session = Depends(get_db)):
+    result = empleado.get_one_empleado(id, db)
+    return result
+
+
+
+#CREAR EMPLEADO CORRECTE
 @app.post("/empleado/")
-def create_empleado(ID_empleado: int, nombre: str, cargo: str, ss:int, sueldo: str, db:Session = Depends(get_db)):
+def create_empleado(ID_empleado: int, nombre: str, cargo: str, ss:int, sueldo: int, db:Session = Depends(get_db)):
     result = empleado.add_new_empleado(ID_empleado, nombre, cargo,ss,sueldo,db)
     return result
 
 
-#UPDATE EMPLEADO
-@app.put("/empleado/crear/{id}", response_model= dict)
+#UPDATE EMPLEADO CORRECTE
+@app.put("/empleado/actualitzar/{id}", response_model= dict)
 async def update_empleado(id:int, nombre: str, cargo:str, ss: int, sueldo: int, db:Session = Depends(get_db)):
-    result = empleado.update_empleado(id,nombre,cargo,ss, sueldo)
+    result = empleado.update_empleado(id,nombre,cargo,ss,sueldo,db)
     return result
 
-#DELETE EMPLEADO
+#DELETE EMPLEADO CORRECTE
 @app.delete("/empleado/delete/{id}", response_model=dict)
 async def delete_empleado(id:int, db:Session = Depends(get_db)):
-    result = empleado.delete_empleado(id, db)
+    result = empleado.delete_empleado(id,db)
     return result
 
 

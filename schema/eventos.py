@@ -1,7 +1,5 @@
-def evento(evento) -> dict:
-    response = {"Evento": evento}
-    return response
+def evento_dict(evento) -> dict:
+    return {"Evento": evento}
 
 def eventos_schema(eventos) -> list[dict]:
-    response = [evento(evento) for evento in eventos]
-    return response
+    return [evento_dict(evento) for evento in eventos]

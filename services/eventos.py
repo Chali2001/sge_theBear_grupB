@@ -1,79 +1,80 @@
 from sqlmodel import Session, select
-from models.Evento import Evento, EstadoEvento
-from datetime import date
+from models.evento import Evento, Assistencia
+from datetime import date, time
+from fastapi import HTTPException, status
+from schema.eventos import eventos_schema
 
 # GET DE EVENTOS
 def get_all_eventos(db: Session):
+    #Realiza una consulta a la base de datos
     sql_read = select(Evento)
+    #Ejecuta la consulta y recupera los eventos
     eventos = db.exec(sql_read).all()
-    return eventos
+    #Si no hay eventos sale "Sin Eventos"
+    if not eventos:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Sin Eventos")
+    #Si hay eventos se muestra con la adaptacion de schema
+    return eventos_schema(eventos)
 
 def get_evento(id: int, db: Session):
-    sql_select = select(Evento).where(Evento.id == id)
-    evento_db = db.exec(sql_select).one()
+    # Verificamos si el ID es valido
+    if id <= 0:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Valor introducido incorrecto")
+    # Buscamos el evento en la base de datos que coincida el id introduucido con el id del evento
+    sql_select = select(Evento).where(Evento.id_evento == id)
+    evento_db = db.exec(sql_select).first()
+    # Si no se encuentra el evento, sale que no existe
+    if not evento_db:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Id de Evento no existente")
+    # Si se encuentra el evento, lo mostramos
     return evento_db
 
-# CREATE EVENTO
-def add_new_evento(nombre: str, fecha: date, lugar: str, estado: EstadoEvento, db: Session):
-    new_evento = Evento(nombre=nombre, fecha=fecha, lugar=lugar, estado=estado)
+# CREA UN EVENTO
+def add_new_evento(fecha: date, asiste: Assistencia, hora: time, direccion: str, id_empleado: int, db: Session):
+    # Crear un nuevo evento con los parámetros introducidos
+    new_evento = Evento(fecha=fecha, asiste=asiste, hora=hora, direccion=direccion, id_empleado=id_empleado)
+    # Añadir el evento a la base de datos
     db.add(new_evento)
+    # Guarda el cambio en la base de datos
     db.commit()
+    # Actualiza los datos
     db.refresh(new_evento)
-    return {"message": "Event created successfully"}
+    # Sale un mensaje de confirmación
+    return {"message": "Evento creado correctamente", "id_evento": new_evento.id_evento}
+
 
 # UPDATE EVENTO
-def update_evento(id: int, nombre: str, fecha: date, lugar: str, estado: EstadoEvento, db: Session):
-    sql_select = select(Evento).where(Evento.id == id)
+def update_evento(id: int, fecha: date, asiste: Assistencia, hora: time, direccion: str, id_empleado: int, db: Session):
+    # Seleccionamos el evento por su id
+    sql_select = select(Evento).where(Evento.id_evento == id)
     evento_db = db.exec(sql_select).one()
-
-    evento_db.nombre = nombre
-    evento_db.fecha = fecha
-    evento_db.lugar = lugar
-    evento_db.estado = estado
-    db.add(evento_db)
-    db.commit()
-    return {"message": "Event updated successfully"}
-
-def update_evento_nombre(id: int, nombre: str, db: Session):
-    sql_select = select(Evento).where(Evento.id == id)
-    evento_db = db.exec(sql_select).one()
-
-    evento_db.nombre = nombre
-    db.add(evento_db)
-    db.commit()
-    return {"message": "Event name updated successfully"}
-
-def update_evento_fecha(id: int, fecha: date, db: Session):
-    sql_select = select(Evento).where(Evento.id == id)
-    evento_db = db.exec(sql_select).one()
-
-    evento_db.fecha = fecha
-    db.add(evento_db)
-    db.commit()
-    return {"message": "Event date updated successfully"}
-
-def update_evento_lugar(id: int, lugar: str, db: Session):
-    sql_select = select(Evento).where(Evento.id == id)
-    evento_db = db.exec(sql_select).one()
-
-    evento_db.lugar = lugar
-    db.add(evento_db)
-    db.commit()
-    return {"message": "Event location updated successfully"}
-
-def update_evento_estado(id: int, estado: EstadoEvento, db: Session):
-    sql_select = select(Evento).where(Evento.id == id)
-    evento_db = db.exec(sql_select).one()
-
-    evento_db.estado = estado
-    db.add(evento_db)
-    db.commit()
-    return {"message": "Event status updated successfully"}
+    if evento_db:  # Verificamos que el evento exista
+        # Actualizamos los campos del evento
+        evento_db.fecha = fecha
+        evento_db.asiste = asiste
+        evento_db.hora = hora
+        evento_db.direccion = direccion
+        evento_db.id_empleado = id_empleado
+        # Guardamos los cambios
+        db.add(evento_db)
+        db.commit()
+        # Ponemos mensaje de confirmación
+        return {"message": "Evento actualizado correctamente"}
+    #En caso de que no exista el id
+    else:
+        return {"message": "Evento no encontrado"}
 
 # DELETE EVENTO
 def delete_evento(id: int, db: Session):
-    sql_select = select(Evento).where(Evento.id == id)
+    # Seleccionamos el evento por su id_evento
+    sql_select = select(Evento).where(Evento.id_evento == id)
     evento_db = db.exec(sql_select).one()
-    db.delete(evento_db)
-    db.commit()
-    return {"message": "Event deleted successfully"}
+    if evento_db:  # Verificamos que el evento exista
+        # Eliminamos el evento
+        db.delete(evento_db)
+        db.commit()
+        # Mensaje de confirmación
+        return {"message": "Evento eliminado correctamente"}
+    # En caso de que el evento no exista
+    else:
+        return {"message": "Evento no encontrado"}

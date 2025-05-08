@@ -40,7 +40,7 @@ def update_punto(id: int, id_pedido: int, reserva: bool, id_factura: int, db:Ses
     punto_db.id_factura = id_factura
     db.add(punto_db)
     db.commit()
-    return {"Message": "Punto de venta actualizado"}
+    return {"message": "Punto de venta actualizado"}
 
 def update_punto_reserva(id: int, reserva: bool, db:Session):
     sql_select = select(Punto_Venta).where(Punto_Venta.id == id)
@@ -51,7 +51,7 @@ def update_punto_reserva(id: int, reserva: bool, db:Session):
     punto_db.reserva = reserva
     db.add(punto_db)
     db.commit()
-    return {"Message": "Reserva del Punto de venta actualizado"}
+    return {"message": "Reserva del Punto de venta actualizado"}
 
 def update_punto_id_factura(id: int, id_factura: int, db:Session):
     sql_select = select(Punto_Venta).where(Punto_Venta.id == id)
@@ -62,7 +62,7 @@ def update_punto_id_factura(id: int, id_factura: int, db:Session):
     punto_db.id_factura = id_factura
     db.add(punto_db)
     db.commit()
-    return {"Message": "Factura del Punto de venta actualizado"}
+    return {"message": "Factura del Punto de venta actualizado"}
 
 def update_punto_id_pedido(id: int, id_pedido: int, db:Session):
     sql_select = select(Punto_Venta).where(Punto_Venta.id == id)
@@ -73,7 +73,7 @@ def update_punto_id_pedido(id: int, id_pedido: int, db:Session):
     punto_db.id_pedido = id_pedido
     db.add(punto_db)
     db.commit()
-    return {"Message": "Pedido del Punto de venta actualizado"}
+    return {"message": "Pedido del Punto de venta actualizado"}
 
 # DELETE PUNTO DE VENTA
 def delete_punto(id: int, db:Session):

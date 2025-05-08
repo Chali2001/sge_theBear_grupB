@@ -1,7 +1,6 @@
 from sqlmodel import Session, select
 from models.evento import Evento, Assistencia
 from datetime import date, time
-from fastapi import HTTPException, status
 from schema.eventos import eventos_schema
 
 # GET DE EVENTOS
@@ -12,22 +11,22 @@ def get_all_eventos(db: Session):
     eventos = db.exec(sql_read).all()
     #Si no hay eventos sale "Sin Eventos"
     if not eventos:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Sin Eventos")
+        return {"message": "Sin Eventos"}
     #Si hay eventos se muestra con la adaptacion de schema
     return eventos_schema(eventos)
 
 def get_evento(id: int, db: Session):
     # Verificamos si el ID es valido
     if id <= 0:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Valor introducido incorrecto")
+        return {"message": "Valor introducido incorrecto"}
     # Buscamos el evento en la base de datos que coincida el id introduucido con el id del evento
     sql_select = select(Evento).where(Evento.id_evento == id)
-    evento_db = db.exec(sql_select).first()
+    evento_db = db.exec(sql_select).all()
     # Si no se encuentra el evento, sale que no existe
     if not evento_db:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Id de Evento no existente")
+        return {"message": "ID de Evento inexistente"}
     # Si se encuentra el evento, lo mostramos
-    return evento_db
+    return eventos_schema(evento_db)
 
 # CREA UN EVENTO
 def add_new_evento(fecha: date, asiste: Assistencia, hora: time, direccion: str, id_empleado: int, db: Session):
@@ -64,11 +63,27 @@ def update_evento(id: int, fecha: date, asiste: Assistencia, hora: time, direcci
     else:
         return {"message": "Evento no encontrado"}
 
+# UPDATE EVENTO DE FECHA Y HORA
+def update_evento_fecha_hora(id: int, fecha: date, hora:time, db: Session):
+    # Seleccionamos el evento por su id
+    sql_select = select(Evento).where(Evento.id_evento == id)
+    evento_db = db.exec(sql_select).one()
+    if evento_db:
+        # Actualizamos solos los campos descritos
+        evento_db.fecha = fecha
+        evento_db.hora = hora
+        db.add(evento_db)
+        db.commit()
+        return {"message": "Fecha y hora del Evento actualizado"}
+    else:
+        return {"message": "Evento no encontrado"}
+
+
 # DELETE EVENTO
 def delete_evento(id: int, db: Session):
     # Seleccionamos el evento por su id_evento
     sql_select = select(Evento).where(Evento.id_evento == id)
-    evento_db = db.exec(sql_select).one()
+    evento_db = db.exec(sql_select).first()
     if evento_db:  # Verificamos que el evento exista
         # Eliminamos el evento
         db.delete(evento_db)

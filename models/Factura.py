@@ -1,6 +1,8 @@
 from sqlmodel import SQLModel, Field
 from datetime import date
 from enum import Enum
+from datetime import date
+
 
 class EstadoFactura(str, Enum):
     pendiente = "pendiente"
@@ -11,7 +13,7 @@ class EstadoFactura(str, Enum):
 class Factura(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)
     costo: float
-    fecha: str
+    fecha: date
     estado: EstadoFactura
 
 

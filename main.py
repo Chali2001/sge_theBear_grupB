@@ -90,7 +90,7 @@ async def read_factura_id(id: int, db:Session = Depends(get_db)):
 
 # CREATE FACTURA
 @app.post("/factura", response_model=dict)
-async def create_factura(costo: int, fecha: date ,estado: EstadoFactura, db:Session = Depends(get_db)):
+async def create_factura(costo: float, fecha: date ,estado: EstadoFactura, db:Session = Depends(get_db)):
     result = Factura.add_new_factura(costo, fecha, estado, db)
     return result
 

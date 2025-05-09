@@ -13,9 +13,10 @@ def get_all_facturas(db: Session):
 
 def get_factura(id: int, db: Session):
     sql_select = select(Factura).where(Factura.id == id)
-    factura_db = db.exec(sql_select).one()
+    factura_db = db.exec(sql_select).all()
     if not factura_db:
         return {"message":f"No existe factura con la id {id}"}
+    factura_db = db.exec(sql_select).one()
 
     return factura_schema(factura_db)
 
@@ -30,9 +31,10 @@ def add_new_factura(costo: float, fecha: date, estado: EstadoFactura, db: Sessio
 # UPDATE FACTURA
 def update_factura(id: int, costo: float, fecha: str, estado: EstadoFactura, db: Session):
     sql_select = select(Factura).where(Factura.id == id)
-    factura_db = db.exec(sql_select).one()
+    factura_db = db.exec(sql_select).all()
     if not factura_db:
         return {"message":f"No existe factura con la id {id}"}
+    factura_db = db.exec(sql_select).one()
 
     factura_db.costo = costo
     factura_db.fecha = fecha
@@ -43,9 +45,10 @@ def update_factura(id: int, costo: float, fecha: str, estado: EstadoFactura, db:
 
 def update_factura_costo(id: int, costo: float, db: Session):
     sql_select = select(Factura).where(Factura.id == id)
-    factura_db = db.exec(sql_select).one()
+    factura_db = db.exec(sql_select).all()
     if not factura_db:
         return {"message":f"No existe factura con la id {id}"}
+    factura_db = db.exec(sql_select).one()
 
     factura_db.costo = costo
     db.add(factura_db)
@@ -54,9 +57,10 @@ def update_factura_costo(id: int, costo: float, db: Session):
 
 def update_factura_fecha(id: int, fecha: str, db: Session):
     sql_select = select(Factura).where(Factura.id == id)
-    factura_db = db.exec(sql_select).one()
+    factura_db = db.exec(sql_select).all()
     if not factura_db:
         return {"message":f"No existe factura con la id {id}"}
+    factura_db = db.exec(sql_select).one()
 
     factura_db.fecha = fecha
     db.add(factura_db)
@@ -65,9 +69,10 @@ def update_factura_fecha(id: int, fecha: str, db: Session):
 
 def update_factura_estado(id: int, estado: EstadoFactura, db: Session):
     sql_select = select(Factura).where(Factura.id == id)
-    factura_db = db.exec(sql_select).one()
+    factura_db = db.exec(sql_select).all()
     if not factura_db:
         return {"message":f"No existe factura con la id {id}"}
+    factura_db = db.exec(sql_select).one()
 
     factura_db.estado = estado
     db.add(factura_db)
@@ -77,9 +82,11 @@ def update_factura_estado(id: int, estado: EstadoFactura, db: Session):
 # DELETE FaCTURA
 def delete_factura(id: int, db: Session):
     sql_select = select(Factura).where(Factura.id == id)
-    factura_db = db.exec(sql_select).one()
+    factura_db = db.exec(sql_select).all()
     if not factura_db:
         return {"message":f"No existe factura con la id {id}"}
+    factura_db = db.exec(sql_select).one()
+
     db.delete(factura_db)
     db.commit()
     return {"message": "Factura eliminada correctamente"}

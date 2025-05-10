@@ -8,11 +8,11 @@
 Fem un get de tots els Punts de Venta
 ![alt text](fotos/Punt_Venta/foto3.png)
 
-Ara, fem un get pero de un punt de venta, que aquest s'escollirà per la id
+Ara, fem un get pero de un Punt de venda, que aquest s'escollirà per la id
 ![alt text](fotos/Punt_Venta/foto2.png)
 
 ### POST
-Creem un Punt de venta, es important dir que l'únic atribut obligatori de posar és reserva
+Creem un Punt de venda, es important dir que l'únic atribut obligatori de posar és reserva
 ![alt text](fotos/Punt_Venta/foto1.png)
 
 ### PUT
@@ -31,7 +31,7 @@ L'ultim update serà per actualitzar la id_factura
 ![alt text](fotos/Punt_Venta/putPuntoVentaFactura.png)
 
 ### DELETE
-El delete, busca una id d'un punt de venta i l'elimina
+El delete, busca una id d'un Punt de venda i l'elimina
 ![alt text](fotos/Punt_Venta/DeletePuntoVenta.png)
 
 ## CRUD DE FACTURA
@@ -64,5 +64,5 @@ I per últim del Estat de la factura que es un enum
 
 ### DELETE
 
-I com Punt de venta, ho podem eliminar per id
+I com Punt de venda, ho podem eliminar per id
 ![alt text](fotos/Factura/DeleteFactura.png)

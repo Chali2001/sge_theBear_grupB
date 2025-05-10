@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Factura</title>
+    <link rel="stylesheet" href="style_form.css">
+</head>
+<body>
+    <div class="erp-container">
+            <!-- Capçalera Odoo-style -->
+            <header class="erp-header">
+                <div class="erp-logo">ERP System</div>
+                <nav class="erp-nav">
+                    <a href="../main_page.html">Inici</a>
+                    <!--<a href="#">Vendes</a>-->
+                    <!-- <a href="../ususaris/index_form.html">Usuaris</a> -->
+                    <a href="../Factura/index_form.html">Punto de Venta</a>
+                    <a href="../Punt_de_venda/">Factura</a>
+                     <!--<a href="#">Inventari</a>-->
+                </nav>
+                <div class="erp-user">Admin</div>
+            </header>
+        <div class="container">
+            <h1>Crear Factura</h1>
+            <form id="facturaFrom">
+                <div class="form-group">
+                    <label for="costo">Costo:</label>
+                    <input type="number" step="0.01" id="costo" name="costo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" id="fecha" name="fecha" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="estado">Estado:</label>
+                    <select id="estado" name="estado" required>
+                        <option value="pendiente">Pendiente</option>
+                        <option value="pagada">Pagada</option>
+                        <option value="cancelada">Cancelada</option>
+                    </select>
+                </div>
+
+                <button type="submit">Crear Factura</button>
+                </br></br>
+                <div class="action-buttons">
+                    <button><a href="index_table_factura.html" class="action-btn">
+                        SHOW TABLE INVOICE
+                    </a></button>
+                </div>
+            </form>
+            <div id="message" class="message"></div>
+        </div>
+    </div>
+
+    <script src="script_form.js"></script>
+</body>
+</html>

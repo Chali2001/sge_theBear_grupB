@@ -1,16 +1,22 @@
 from sqlmodel import Session, select
 from models.Producto_mdl import Producto
+from schema.Producto_sch import producto_schema, productos_schema
+
 
 # GET DE PRODUCTOS
-def get_all_productos(db: Session):
+def get_producto(db: Session):
     sql_read = select(Producto)
     producto = db.exec(sql_read).all()
+    if not producto:
+        return {"message":"No hay productos creados"}
     return producto
 
-def get_producto_by_id(db: Session, producto_id: int):
-    statement = select(Producto).where(Producto.id == producto_id)
-    result = db.exec(statement).first()
-    return result
+def get_producto_by_id(id: int, db: Session):
+    sql_select = select(Producto).where(Producto.id == id)
+    producto_db = db.exec(sql_select).first()
+    if not producto_db:
+        return {"message":f"No existe producto con la id {id}"}
+    return producto_db
 
 # CREATE PRODUCTO
 def add_new_producto(precio: float, stock: int, name: str, db: Session):
@@ -18,7 +24,7 @@ def add_new_producto(precio: float, stock: int, name: str, db: Session):
     db.add(new_Producto)
     db.commit()
     db.refresh(new_Producto)
-    return {"message": "Product created successfully"}
+    return {"message": "Product created successfully", "id": new_Producto.id}
 
 # UPDATE PRODUCTO
 def update_producto(id: int, precio: float, stock: int, db: Session):
@@ -53,7 +59,11 @@ def update_producto_stock(id: int, stock: int, db: Session):
 # DELETE PRODUCTO
 def delete_producto(id: int, db: Session):
     sql_select = select(Producto).where(Producto.id == id)
+    producto_db = db.exec(sql_select).all()
+    if not producto_db:
+        return {"message":f"No existe producto con la id {id}"}
     producto_db = db.exec(sql_select).one()
+
     db.delete(producto_db)
     db.commit()
-    return {"message": "Product deleted successfully"}
+    return {"message": "producto eliminada correctamente"}

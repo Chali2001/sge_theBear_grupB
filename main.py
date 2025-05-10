@@ -3,7 +3,7 @@ from fastapi import FastAPI, Depends
 from sqlmodel import SQLModel, create_engine, Session
 from dotenv import load_dotenv
 
-from models.Pedido_mdl import EstadoPedido
+from models.Pedido_mdl import EstadoPedido, Pedido
 from models.Producto_mdl import Producto
 from services import Pedido_srv, Producto_srv
 from schema.Producto_sch import productos_schema
@@ -36,15 +36,13 @@ def get_db():
 
 # GET PRODUCTO
 @app.get("/Producto_srv", response_model=List[dict])
-async def read_producto(db: Session = Depends(get_db)):
-    productos = Producto_srv.get_all_productos(db)
-    return productos_schema(productos)
+async def get_producto(db: Session = Depends(get_db)):
+    producto = Producto_srv.get_producto(db)
+    return productos_schema(producto)
 
 @app.get("/Producto_srv/{producto_id}", response_model=Producto)
-async def read_producto_by_id(producto_id: int, db: Session = Depends(get_db)):
-    producto = Producto_srv.get_producto_by_id(db, producto_id)
-    if producto is None:
-        return {"Producto not found"}
+async def get_producto_by_id(producto_id: int, db: Session = Depends(get_db)):
+    producto = Producto_srv.get_producto_by_id(producto_id, db)
     return producto
 
 # CREATE PRODUCTO
@@ -80,22 +78,22 @@ async def delete_producto(producto_id: int, db: Session = Depends(get_db)):
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 
 # GET PEDIDO
-@app.get("/Pedido_srv", response_model=List[dict])
-async def read_pedido(db: Session = Depends(get_db)):
-    pedidos = Producto_srv.get_all_productos(db)
-    return pedidos_schema(pedidos)
+@app.get("/Pedido_srv", response_model=List[Pedido])
+async def get_pedido(db: Session = Depends(get_db)):
+    pedido = Pedido_srv.get_pedido(db)
+    return pedido
 
-@app.get("/Pedido_srv/{pedido_id}", response_model=Producto)
-async def read_pedido_by_id(pedido_id: int, db: Session = Depends(get_db)):
-    pedido = Pedido_srv.get_pedido_by_id(db, pedido_id)
-    if pedido is None:
-        return {"Producto not found"}
+@app.get("/Pedido_srv/{pedido_id}", response_model=Pedido)
+async def get_pedido_by_id(pedido_id: int, db: Session = Depends(get_db)):
+    pedido = Pedido_srv.get_pedido_by_id(pedido_id, db)
+    if not pedido:
+        return {"message": f"No existe pedido con la id {pedido_id}"}
     return pedido
 
 # CREATE PEDIDO
 @app.post("/Pedido_srv", response_model=dict)
-async def create_pedido(id_producto: int, db: Session = Depends(get_db)):
-    result = Pedido_srv.add_new_pedido(id_producto=id_producto, db=db)
+async def create_pedido(id_cliente: int,id_producto: int, db: Session = Depends(get_db)):
+    result = Pedido_srv.add_new_pedido(id_cliente=id_cliente,id_producto=id_producto, db=db)
     return result
 
 # UPDATE PEDIDO -- ESTADO

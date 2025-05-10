@@ -7,8 +7,19 @@ from typing import Optional
 from models.Factura import EstadoFactura
 from services import Punto_Venta, Factura
 import os
+from pydantic import BaseModel
+
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 #Carrega variables d'entorn des del fitxer .env
 load_dotenv()
@@ -30,11 +41,17 @@ def get_db():
     finally:
         db.close()
 
+
+class PuntoVentaCreate(BaseModel):
+    id_pedido: Optional[int] = None
+    reserva: bool
+    id_factura: Optional[int] = None
+
 # CRUD DE PUNTO DE VENTA
 
 # GET PUNTO DE VENTA
-@app.get("/puntoVenta", response_model=List[dict])
-async def read_puntoVenta (db:Session = Depends(get_db)):
+@app.get("/puntoVenta/getAll", response_model=List[dict])
+async def read_punto_venta (db:Session = Depends(get_db)):
     result = Punto_Venta.get_all_punts(db)
     return result
 
@@ -45,8 +62,8 @@ async def read_puntoVenta_id(id: int, db:Session = Depends(get_db)):
 
 # CREATE PUNTO DE VENTA
 @app.post("/puntoVenta/add", response_model=dict)
-async def create_puntoVenta(id_pedido: Optional[int] = None, reserva: bool = False, id_factura: Optional[int] = None, db:Session = Depends(get_db)):
-    result = Punto_Venta.add_new_punto(id_pedido, reserva, id_factura, db)
+async def create_punto_venta(punto: PuntoVentaCreate, db: Session = Depends(get_db)):
+    result = Punto_Venta.add_new_punto(punto.id_pedido, punto.reserva, punto.id_factura, db)
     return result
 
 # UPDATE PUNTO DE VENTA
@@ -70,16 +87,21 @@ async def update_puntoVenta_id_pedido(id: int, id_pedido: int, db:Session = Depe
     return result
 
 # DELETE PUNTO DE VENTA
-@app.delete("/puntoVenta/delete/{id}", response_model=dict)
-async def delete_puntoVenta(id: int, db:Session = Depends(get_db)):
-    result = Punto_Venta.delete_punto(id, db)
-    return result
+def delete_punto(id: int, db: Session):
+    sql_select = select(Punto_Venta).where(Punto_Venta.id == id)
+    punto_db = db.exec(sql_select).all()
+    if not punto_db:
+        return {"message": f"No existe punto de venta con la id {id}"},
+
+    db.delete(punto_db)
+    db.commit()
+    return {"message": "Punto de venta eliminado correctamente"}
 
 
 # CRUD DE FACTURA
 
 # GET FACTURA
-@app.get("/factura", response_model=List[dict])
+@app.get("/factura/getAll", response_model=List[dict])
 async def read_factura(db:Session = Depends(get_db)):
     result = Factura.get_all_facturas(db)
     return result
@@ -90,9 +112,14 @@ async def read_factura_id(id: int, db:Session = Depends(get_db)):
     return result
 
 # CREATE FACTURA
+class FacturaCreate(BaseModel):
+    costo: float
+    fecha: date
+    estado: EstadoFactura
+
 @app.post("/factura/add", response_model=dict)
-async def create_factura(costo: float, fecha: date ,estado: EstadoFactura, db:Session = Depends(get_db)):
-    result = Factura.add_new_factura(costo, fecha, estado, db)
+async def add_new_factura(factura: FacturaCreate, db: Session = Depends(get_db)):
+    result = Factura.add_new_factura(factura.costo, factura.fecha, factura.estado, db)
     return result
 
 # UPDATE FACTURA

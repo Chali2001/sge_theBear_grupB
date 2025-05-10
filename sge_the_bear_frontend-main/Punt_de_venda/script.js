@@ -1,5 +1,5 @@
 // URL del endpoint de la API
-const API_URL = "http://localhost:8000/puntoVenta/";
+const API_URL = "http://localhost:8000/puntoVenta/getAll";
 
 // Función para obtener los datos de los usuarios
 async function fetchPunts() {
@@ -9,8 +9,8 @@ async function fetchPunts() {
             throw new Error(`Error en la solicitud: ${response.status}`);
         }
         const punts = await response.json(); // Convertimos la respuesta a JSON
+        console.log(punts);
         displayPunts(punts); // Mostramos los datos en la tabla
-        //console.log(users)
     } catch (error) {
         console.error("Error al obtener los puntos de venta:", error);
     }
@@ -19,35 +19,31 @@ async function fetchPunts() {
 // Función para mostrar los usuarios en la tabla
 function displayPunts(punts) {
     const tableBody = document.querySelector("#puntTable tbody");
-
-    // Limpiamos el contenido actual de la tabla
     tableBody.innerHTML = "";
 
-    // Iteramos sobre la lista de usuarios y creamos las filas de la tabla
     punts.forEach(punt => {
         const row = document.createElement("tr");
 
-        // Creamos las celdas para cada campo del usuario
         const idCell = document.createElement("td");
-        idCell.textContent = punt.punt.id;
+        idCell.textContent = punt["Punto_Venta"].id;
         row.appendChild(idCell);
 
         const id_pedidoCell = document.createElement("td");
-        id_pedidoCell.textContent = punt.punt.id_pedido;
+        id_pedidoCell.textContent = punt["Punto_Venta"].id_pedido;
         row.appendChild(id_pedidoCell);
 
         const reservaCell = document.createElement("td");
-        reservaCell.textContent = punt.punt.reserva;
+        reservaCell.textContent = punt["Punto_Venta"].reserva ? 'Sí' : 'No';
         row.appendChild(reservaCell);
 
-        const id_factura = document.createElement("td");
-        id_facturaCell.textContent = punt.punt.id_factura;
+        const id_facturaCell = document.createElement("td");
+        id_facturaCell.textContent = punt["Punto_Venta"].id_factura ?? '-';
         row.appendChild(id_facturaCell);
 
-        // Añadimos la fila a la tabla
         tableBody.appendChild(row);
     });
 }
+
 
 // Llamamos a la función para obtener y mostrar los usuarios cuando la página se carga
 document.addEventListener("DOMContentLoaded", fetchPunts);

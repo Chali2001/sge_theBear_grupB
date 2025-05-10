@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('facturaFrom');
+    const form = document.getElementById('facturaForm');
     const messageDiv = document.getElementById('message');
 
     form.addEventListener('submit', async (e) => {
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
          try {
             // Enviar dades al servidor amb body JSON
-            const response = await fetch('http://localhost:8000/factura/add/', {
+            const response = await fetch('http://localhost:8000/factura/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     estado: estado
                 })
             });
+
+            const data = await response.json();
 
             if (response.ok) {
                 showMessage('Factura creat correctament!', 'success');

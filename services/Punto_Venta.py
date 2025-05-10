@@ -3,6 +3,7 @@ from sqlmodel import Session, select
 from models.Punto_Venta import Punto_Venta
 from models.Factura import Factura
 from schema.puntoVenta_sch import puntos_schema, punto_schema
+from typing import Optional
 
 # GET PUNTO DE VENTA
 def get_all_punts(db:Session):
@@ -21,20 +22,27 @@ def get_punto(id: int, db:Session):
     return punto_schema(punto_db)
 
 # CREATE PUNTO DE VENTA
-def add_new_punto(id_pedido: int, reserva: bool, id_factura: int, db:Session):
+def add_new_punto(id_pedido: Optional[int], reserva: bool, id_factura: Optional[int], db: Session):
     if id_pedido is None:
-        id_pedido = 0
-    # Comprobamos que la id de factura correspond a una factura
-    sql_select = select(Factura).where(Factura.id == id_factura)
-    factura_db = db.exec(sql_select).all()
-    if not factura_db:
-        return {"message":f"No existe factura con la id {id_factura}"}
+        id_pedido = 0  # o podrías dejarlo en None si la base de datos lo permite
 
-    db_punto = Punto_Venta(id_pedido=id_pedido, reserva=reserva, id_factura=id_factura)
-    db.add(db_punto)
+    if id_factura is not None:
+        factura_db = db.exec(select(Factura).where(Factura.id == id_factura)).first()
+        if not factura_db:
+            return {"message": f"No existe factura con la ID {id_factura}"}
+
+    nuevo_punto = Punto_Venta(
+        id_pedido=id_pedido,
+        reserva=reserva,
+        id_factura=id_factura
+    )
+
+    db.add(nuevo_punto)
     db.commit()
-    db.refresh(db_punto)
-    return {"message": f"Punto de venta creado con la id: {db_punto.id}"}
+    db.refresh(nuevo_punto)
+
+    return {"message": f"Punto de venta creado con la ID: {nuevo_punto.id}"}
+
 
 # UPDATE PUNTO DE VENTA
 def update_punto(id: int, id_pedido: int, reserva: bool, id_factura: int, db:Session):

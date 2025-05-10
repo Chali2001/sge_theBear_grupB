@@ -1,27 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Seleccionem el mòdul d'usuaris
-    const usersModule = document.getElementById('usersModule');
+    const facturaModule = document.getElementById('facturaModule');
 
     // Afegim event listener per al clic
-    usersModule.addEventListener('click', () => {
+    facturaModule.addEventListener('click', () => {
         // Redireccionem a la pàgina del formulari
-        window.location.href = '/ususaris/index_form.html';
+        window.location.href = 'Factura/index_form.html';
     });
 
     // Opcional: Afegir efecte al passar el ratolí
-    usersModule.addEventListener('mouseenter', () => {
-        usersModule.style.borderColor = '#714B67';
+    facturaModule.addEventListener('mouseenter', () => {
+        facturaModule.style.borderColor = '#714B67';
     });
 
-    usersModule.addEventListener('mouseleave', () => {
-        usersModule.style.borderColor = '#e0e0e0';
+    facturaModule.addEventListener('mouseleave', () => {
+        facturaModule.style.borderColor = '#e0e0e0';
     });
 
      // Mòdul Punt de venda
-    const puntModule = document.getElementById('productsModule');
+    const puntModule = document.getElementById('puntModule');
 
     puntModule.addEventListener('click', () => {
-        window.location.href = '/productes/index_form.html';
+        window.location.href = 'Punt_de_venda/index_form.html';
     });
 
     puntModule.addEventListener('mouseenter', () => {

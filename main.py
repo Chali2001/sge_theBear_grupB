@@ -2,7 +2,7 @@ from typing import List
 from fastapi import FastAPI, Depends
 from sqlmodel import SQLModel, create_engine, Session
 from dotenv import load_dotenv
-from datetime import date
+from datetime import date,time
 from typing import Optional
 from models.Factura import EstadoFactura
 from services import Punto_Venta, Factura

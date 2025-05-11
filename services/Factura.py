@@ -81,12 +81,14 @@ def update_factura_estado(id: int, estado: EstadoFactura, db: Session):
 
 # DELETE FaCTURA
 def delete_factura(id: int, db: Session):
-    sql_select = select(Factura).where(Factura.id == id)
-    factura_db = db.exec(sql_select).all()
-    if not factura_db:
-        return {"message":f"No existe factura con la id {id}"}
-    factura_db = db.exec(sql_select).one()
+    try:
+        sql_select = select(Factura).where(Factura.id == id)
+        factura_db = db.exec(sql_select).first()
+        if not factura_db:
+            return {"message":f"No existe factura con la id {id}"}
 
-    db.delete(factura_db)
-    db.commit()
-    return {"message": "Factura eliminada correctamente"}
+        db.delete(factura_db)
+        db.commit()
+        return {"message": "Factura eliminada correctamente"}
+    except:
+        return {"message": "La factura esta siendo usada"}

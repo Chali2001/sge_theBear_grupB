@@ -1,6 +1,5 @@
 from sqlmodel import Session, select
 from models.Producto_mdl import Producto
-from schema.Producto_sch import producto_schema, productos_schema
 
 
 # GET DE PRODUCTOS
@@ -24,7 +23,7 @@ def add_new_producto(precio: float, stock: int, name: str, db: Session):
     db.add(new_Producto)
     db.commit()
     db.refresh(new_Producto)
-    return {"message": "Product created successfully", "id": new_Producto.id}
+    return {"message": "Producto creado correctamente", "id": new_Producto.id}
 
 # UPDATE PRODUCTO
 def update_producto(id: int, precio: float, stock: int, db: Session):
@@ -35,7 +34,7 @@ def update_producto(id: int, precio: float, stock: int, db: Session):
     producto_db.stock = stock
     db.add(producto_db)
     db.commit()
-    return {"message": "Product updated successfully"}
+    return {"message": "Producto actualizado correctamente"}
 
 # UPDATE PRODUCTO -- PRECIO
 def update_producto_precio(id: int, precio: float, db: Session):
@@ -45,7 +44,7 @@ def update_producto_precio(id: int, precio: float, db: Session):
     producto_db.precio = precio
     db.add(producto_db)
     db.commit()
-    return {"message": "Product cost updated successfully"}
+    return {"message": "Precio del producto actualizado correctamente"}
 
 # UPDATE PRODUCTO -- STOCK
 def update_producto_stock(id: int, stock: int, db: Session):
@@ -54,7 +53,7 @@ def update_producto_stock(id: int, stock: int, db: Session):
     producto_db.stock = stock
     db.add(producto_db)
     db.commit()
-    return {"message": "Product stock updated successfully"}
+    return {"message": "Stock del producto actualizado correctamente"}
 
 # DELETE PRODUCTO
 def delete_producto(id: int, db: Session):
@@ -66,4 +65,4 @@ def delete_producto(id: int, db: Session):
 
     db.delete(producto_db)
     db.commit()
-    return {"message": "producto eliminada correctamente"}
+    return {"message": "Producto eliminado correctamente"}

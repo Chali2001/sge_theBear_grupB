@@ -40,6 +40,7 @@ async def get_producto(db: Session = Depends(get_db)):
     producto = Producto_srv.get_producto(db)
     return productos_schema(producto)
 
+# GET PRODUCTO -- ID
 @app.get("/Producto_srv/{producto_id}", response_model=Producto)
 async def get_producto_by_id(producto_id: int, db: Session = Depends(get_db)):
     producto = Producto_srv.get_producto_by_id(producto_id, db)
@@ -82,7 +83,7 @@ async def delete_producto(producto_id: int, db: Session = Depends(get_db)):
 async def get_pedido(db: Session = Depends(get_db)):
     pedido = Pedido_srv.get_pedido(db)
     return pedido
-
+# GET PEDIDO -- ID
 @app.get("/Pedido_srv/{pedido_id}", response_model=Pedido)
 async def get_pedido_by_id(pedido_id: int, db: Session = Depends(get_db)):
     pedido = Pedido_srv.get_pedido_by_id(pedido_id, db)
@@ -93,7 +94,7 @@ async def get_pedido_by_id(pedido_id: int, db: Session = Depends(get_db)):
 # CREATE PEDIDO
 @app.post("/Pedido_srv", response_model=dict)
 async def create_pedido(id_cliente: int,id_producto: int, db: Session = Depends(get_db)):
-    result = Pedido_srv.add_new_pedido(id_cliente=id_cliente,id_producto=id_producto, db=db)
+    result = Pedido_srv.add_new_pedido(id_cliente=id_cliente, id_producto=id_producto, db=db)
     return result
 
 # UPDATE PEDIDO -- ESTADO

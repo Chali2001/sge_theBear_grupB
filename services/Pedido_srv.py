@@ -58,4 +58,4 @@ def delete_pedido(id: int, db: Session):
 
     db.delete(pedido_db)
     db.commit()
-    return {"message": "pedido eliminada correctamente"}
+    return {"message": "pedido eliminado correctamente"}

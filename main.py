@@ -44,8 +44,11 @@ def get_db():
 
 class PuntoVentaCreate(BaseModel):
     id_pedido: Optional[int] = None
-    reserva: bool
+    reserva: bool = False
     id_factura: Optional[int] = None
+
+class ReservaRequest(BaseModel):
+    reserva: bool
 
 # CRUD DE PUNTO DE VENTA
 
@@ -73,14 +76,16 @@ async def update_puntoVenta(id: int, id_pedido: Optional[int] = None, reserva: b
     return result
 
 @app.put("/puntoVenta/update/reserva/{id}", response_model=dict)
-async def update_puntoVenta_reserva(id: int, reserva: bool, db:Session = Depends(get_db)):
-    result = Punto_Venta.update_punto_reserva(id, reserva, db)
+async def update_puntoVenta_reserva(id: int, reserva_request: ReservaRequest, db: Session = Depends(get_db)):
+    result = Punto_Venta.update_punto_reserva(id, reserva_request.reserva, db)
     return result
+
 
 @app.put("/puntoVenta/update/id_factura/{id}", response_model=dict)
 async def update_puntoVenta_id_factura(id: int, id_factura: int, db:Session = Depends(get_db)):
     result = Punto_Venta.update_punto_id_factura(id, id_factura, db)
     return result
+
 @app.put("/puntoVenta/update/id_pedido/{id}", response_model=dict)
 async def update_puntoVenta_id_pedido(id: int, id_pedido: int, db:Session = Depends(get_db)):
     result = Punto_Venta.update_punto_id_pedido(id, id_pedido, db)
@@ -111,10 +116,16 @@ async def read_factura_id(id: int, db:Session = Depends(get_db)):
     result = Factura.get_factura(id, db)
     return result
 
+
+
+
 # CREATE FACTURA
 class FacturaCreate(BaseModel):
     costo: float
     fecha: date
+    estado: EstadoFactura
+
+class EstadoFacturaInput(BaseModel):
     estado: EstadoFactura
 
 @app.post("/factura/add", response_model=dict)
@@ -139,8 +150,8 @@ async def update_factura_fecha(id: int, fecha: date, db:Session = Depends(get_db
     return result
 
 @app.put("/factura/update/estado/{id}", response_model=dict)
-async def update_factura_estado(id: int, estado: EstadoFactura, db:Session = Depends(get_db)):
-    result = Factura.update_factura_estado(id, estado, db)
+async def update_factura_estado(id: int, estado_input: EstadoFacturaInput, db: Session = Depends(get_db)):
+    result = Factura.update_factura_estado(id, estado_input.estado, db)
     return result
 
 # DELETE FACTURA

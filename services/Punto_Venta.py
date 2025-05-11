@@ -24,7 +24,7 @@ def get_punto(id: int, db:Session):
 # CREATE PUNTO DE VENTA
 def add_new_punto(id_pedido: Optional[int], reserva: bool, id_factura: Optional[int], db: Session):
     if id_pedido is None:
-        id_pedido = 0  # o podrías dejarlo en None si la base de datos lo permite
+        id_pedido = 0
 
     if id_factura is not None:
         factura_db = db.exec(select(Factura).where(Factura.id == id_factura)).first()
@@ -67,15 +67,14 @@ def update_punto(id: int, id_pedido: int, reserva: bool, id_factura: int, db:Ses
 
 def update_punto_reserva(id: int, reserva: bool, db:Session):
     sql_select = select(Punto_Venta).where(Punto_Venta.id == id)
-    punto_db = db.exec(sql_select).all()
+    punto_db = db.exec(sql_select).first()
     if not punto_db:
         return {"message":f"No existe punto de venta con la id {id}"}
-    punto_db = db.exec(sql_select).one()
-
     punto_db.reserva = reserva
     db.add(punto_db)
     db.commit()
     return {"message": "Reserva del Punto de venta actualizado"}
+
 
 def update_punto_id_factura(id: int, id_factura: int, db:Session):
     sql_select = select(Punto_Venta).where(Punto_Venta.id == id)
@@ -84,7 +83,6 @@ def update_punto_id_factura(id: int, id_factura: int, db:Session):
         return {"message":f"No existe punto de venta con la id {id}"}
     punto_db = db.exec(sql_select).one()
 
-    # Comprobamos que la id de factura correspond a una factura
     sql_select = select(Factura).where(Factura.id == id_factura)
     factura_db = db.exec(sql_select).all()
     if not factura_db:
@@ -98,10 +96,9 @@ def update_punto_id_factura(id: int, id_factura: int, db:Session):
 
 def update_punto_id_pedido(id: int, id_pedido: int, db:Session):
     sql_select = select(Punto_Venta).where(Punto_Venta.id == id)
-    punto_db = db.exec(sql_select).all()
+    punto_db = db.exec(sql_select).first()
     if not punto_db:
         return {"message":f"No existe punto de venta con la id {id}"}
-    punto_db = db.exec(sql_select).one()
 
     punto_db.id_pedido = id_pedido
     db.add(punto_db)

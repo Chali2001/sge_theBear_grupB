@@ -108,7 +108,7 @@ def update_punto_id_pedido(id: int, id_pedido: int, db:Session):
 # DELETE PUNTO DE VENTA
 def delete_punto(id: int, db:Session):
     sql_select = select(Punto_Venta).where(Punto_Venta.id == id)
-    punto_db = db.exec(sql_select).one()
+    punto_db = db.exec(sql_select).first()
     if not punto_db:
         return {"message":f"No existe punto de venta con la id {id}"}
 

@@ -58,9 +58,8 @@ class PuntoVentaCreate(BaseModel):
 class ReservaRequest(BaseModel):
     reserva: bool
 
-
-# PARTE DE IAN
 # CRUD DE PUNTO DE VENTA
+
 # GET PUNTO DE VENTA
 @app.get("/puntoVenta/getAll", response_model=List[dict])
 async def read_punto_venta (db:Session = Depends(get_db)):
@@ -101,15 +100,10 @@ async def update_puntoVenta_id_pedido(id: int, id_pedido: int, db:Session = Depe
     return result
 
 # DELETE PUNTO DE VENTA
-def delete_punto(id: int, db: Session):
-    sql_select = select(Punto_Venta).where(Punto_Venta.id == id)
-    punto_db = db.exec(sql_select).all()
-    if not punto_db:
-        return {"message": f"No existe punto de venta con la id {id}"},
-
-    db.delete(punto_db)
-    db.commit()
-    return {"message": "Punto de venta eliminado correctamente"}
+@app.delete("/puntoVenta/delete/{id}", response_model=dict)
+async def delete_punto(id: int, db: Session = Depends(get_db)):
+    resultat = Punto_Venta.delete_punto(id, db)
+    return resultat
 
 
 # CRUD DE FACTURA
@@ -168,7 +162,6 @@ async def update_factura_estado(id: int, estado_input: EstadoFacturaInput, db: S
 async def delete_factura(id: int, db:Session = Depends(get_db)):
     result = Factura.delete_factura(id, db)
     return result
-
 
 
 # PARTE DE IZAN

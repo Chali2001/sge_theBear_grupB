@@ -5,12 +5,11 @@ from dotenv import load_dotenv
 from datetime import date,time
 from typing import Optional
 from models.Factura import EstadoFactura
-from services import Punto_Venta, Factura
+from services import Punto_Venta, Factura, empleado, cliente, Pedido_srv, Producto_srv
 import os
 from pydantic import BaseModel
 from models.Pedido_mdl import EstadoPedido, Pedido
 from models.Producto_mdl import Producto
-from services import Pedido_srv, Producto_srv
 from schema.Producto_sch import productos_schema
 from schema.Pedido_sch import pedidos_schema
 from models.evento import Assistencia

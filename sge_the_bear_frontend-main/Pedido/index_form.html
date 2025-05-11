@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Pedido</title>
+    <link rel="stylesheet" href="style_form.css">
+</head>
+<body>
+    <div class="erp-container">
+            <!-- Capçalera Odoo-style -->
+            <header class="erp-header">
+                <div class="erp-logo">ERP System</div>
+                <nav class="erp-nav">
+                    <a href="../main_page.html">Inici</a>
+                    <!--<a href="#">Pedidos</a>-->
+                    <!-- <a href="../ususaris/index_form.html">Usuaris</a> -->
+                    <a href="../Producto/index_form.html">Producto</a>
+                    <a href="../Pedido/index_form.html">Pedido</a>
+                     <!--<a href="#">Inventari</a>-->
+                </nav>
+                <div class="erp-user">Admin</div>
+            </header>
+        <div class="container">
+            <h1>Crear Pedido</h1>
+            <form id="pedidoForm">
+                <div class="form-group">
+                    <label for="id_cliente">id_cliente:</label>
+                    <input type="number" step="0.01" id="id_cliente" name="id_cliente" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_producto">id_producto:</label>
+                    <input type="number" step="0.01" id="id_producto" name="id_producto" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="estado">Estado:</label>
+                    <select id="estado" name="estado" required>
+                        <option value="pendiente">Pendiente</option>
+                        <option value="pagada">Pagada</option>
+                        <option value="cancelada">Cancelada</option>
+                        <option value="EnProceso">EnProceso</option>
+                    </select>
+                </div>
+                <button type="submit">Crear Pedido</button>
+                </br></br>
+                <div class="action-buttons">
+                  <button><a href="index_form_update.html" class="action-btn">
+                    UPDATEINVOICE
+                </div>
+                <br>
+                <div class="action-buttons">
+                  <button><a href="index_form_delete.html" class="action-btn">
+                    DELETE INVOICE
+                </div>
+                </br></br>
+                <div class="action-buttons">
+                    <button><a href="index_table_pedido.html" class="action-btn">
+                        SHOW TABLE INVOICE
+                    </a></button>
+                </div>
+            </form>
+            <div id="message" class="message"></div>
+        </div>
+    </div>
+
+    <script src="script_form.js"></script>
+</body>
+</html>

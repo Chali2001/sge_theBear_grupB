@@ -92,15 +92,10 @@ async def update_puntoVenta_id_pedido(id: int, id_pedido: int, db:Session = Depe
     return result
 
 # DELETE PUNTO DE VENTA
-def delete_punto(id: int, db: Session):
-    sql_select = select(Punto_Venta).where(Punto_Venta.id == id)
-    punto_db = db.exec(sql_select).all()
-    if not punto_db:
-        return {"message": f"No existe punto de venta con la id {id}"},
-
-    db.delete(punto_db)
-    db.commit()
-    return {"message": "Punto de venta eliminado correctamente"}
+@app.delete("/puntoVenta/delete/{id}", response_model=dict)
+async def delete_punto(id: int, db: Session = Depends(get_db)):
+    resultat = Punto_Venta.delete_punto(id, db)
+    return resultat
 
 
 # CRUD DE FACTURA

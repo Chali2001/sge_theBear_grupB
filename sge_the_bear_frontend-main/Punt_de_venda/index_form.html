@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ca" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Punto de Venta</title>
+    <link rel="stylesheet" href="style_form.css">
+</head>
+<body>
+    <div class="erp-container">
+            <!-- Capçalera Odoo-style -->
+            <header class="erp-header">
+                <div class="erp-logo">ERP System</div>
+                <nav class="erp-nav">
+                    <a href="../main_page.html">Inici</a>
+                    <!--<a href="#">Vendes</a>-->
+                    <!-- <a href="../ususaris/index_form.html">Usuaris</a> -->
+                    <a href="../Punt_de_venda/index_form.html">Punto de Venta</a>
+                    <a href="../Factura/index_form.html">Factura</a>
+                     <!--<a href="#">Inventari</a>-->
+                </nav>
+                <div class="erp-user">Admin</div>
+            </header>
+        <div class="container">
+            <h1>Crear Punto de Venta</h1>
+            <form id="puntForm">
+                <div class="form-group">
+                    <label for="id_pedido">id_pedido:</label>
+                    <input type="number" id="id_pedido" name="id_pedido">
+                </div>
+
+                <div class="form-group">
+                    <label for="reserva">¿Reserva?</label>
+                    <input type="checkbox" id="reserva" name="reserva">
+                </div>
+
+                <div class="form-group">
+                    <label for="id_factura">id_factura:</label>
+                    <input type="number" id="id_factura" name="id_factura">
+                </div>
+                <button type="submit">Crear Punto de Venta</button>
+                </br></br>
+                <div class="action-buttons">
+                  <button><a href="index_form_update.html" class="action-btn">
+                    UPDATE POINT OF SALE
+                  </a></button>
+                </div>
+                </br></br>
+                <div class="action-buttons">
+                  <button><a href="index_form_delete.html" class="action-btn">
+                    DELETE POINT OF SALE
+                  </a></button>
+                </div>
+                </br></br>
+                <div>
+                </a></button>
+                <button><a href="index_table_pointOfSale.html" class="action-btn">
+                    SHOW TABLE POINT OF SALE
+                </a></button>
+             </div>
+            </form>
+            <div id="message" class="message"></div>
+        </div>
+    </div>
+
+    <script src="script_form.js"></script>
+</body>
+</html>

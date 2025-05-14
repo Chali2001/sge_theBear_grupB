@@ -1,7 +1,9 @@
+
 from schema.clientes_sch import clientes_schema
 from sqlmodel import Session, select
 from models.Cliente import Cliente
-from schema.empleados_sch import empleado_schema
+
+
 def get_all_clientes(db:Session):
     sql_read = select(Cliente)
     clientes = db.exec(sql_read).all()
@@ -39,5 +41,3 @@ def delete_cliente(id:int, db:Session):
     db.delete(cliente_db)
     db.commit()
     return {"msg": "Cliente Eliminado"}
-
-

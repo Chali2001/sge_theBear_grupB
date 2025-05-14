@@ -5,5 +5,3 @@ def empleado_schema(empleado) -> dict:
 def empleados_schema(empleados) -> list[dict]:
     response = [empleado_schema(empleado) for empleado in empleados]
     return response
-
-

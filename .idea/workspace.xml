@@ -4,11 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="232747df-fbdc-4149-ae9b-2c06e2c47e1f" name="Changes" comment="">
+    <list default="true" id="efa3dd3b-fb5e-45de-950f-5713d770d232" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/Clientes/clientes.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/Clientes/clientes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/Empleados/empleados.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/Empleados/empleados.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/Empleados/empleados.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fotos/update.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Cliente.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Cliente.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Cliente.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Empleado.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/Clientes/clientes.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/schema/clientes_sch.py" beforeDir="false" afterPath="$PROJECT_DIR$/schema/clientes_sch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schema/empleados_sch.py" beforeDir="false" afterPath="$PROJECT_DIR$/schema/empleados_sch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schema/read_sch.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/cliente.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/cliente.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/empleado.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/empleado.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/read.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/main_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/main_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/script_main_page.js" beforeDir="false" afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/script_main_page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/index_form.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/index_form_clients.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/index_form_empleats.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/index_table_clients.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/index_table_empleats.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/index_table_users.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/script_clients.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/script_empleats.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/script_form.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/script_form_clients.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/script_form_empleats.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/style_form.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/style_table.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/styles_main_page.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,58 +64,26 @@
     &quot;accountId&quot;: &quot;59eab2be-01a4-45d8-ad80-1979875b372e&quot;
   }
 }</component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
-  </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 2
+  &quot;associatedIndex&quot;: 0
 }</component>
-  <component name="ProjectId" id="2uZmeff3P4vrbyK33ureAkyuMSE" />
+  <component name="ProjectId" id="2x6Iv8cDiUysrtT303pgBQlpwc4" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev__dahaochen&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/dev/PycharmProjects/sge_theBear_grupB/models&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "dev__dahaochen",
+    "last_opened_file_path": "/home/dev/MOVER"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/models" />
-      <recent name="$PROJECT_DIR$/config" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/services" />
     </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="sge_theBear_grupB" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -93,23 +95,22 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="232747df-fbdc-4149-ae9b-2c06e2c47e1f" name="Changes" comment="" />
-      <created>1742464568305</created>
+      <changelist id="efa3dd3b-fb5e-45de-950f-5713d770d232" name="Changes" comment="" />
+      <created>1747252324909</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1742464568305</updated>
+      <updated>1747252324909</updated>
     </task>
     <servers />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/services/empleado.py</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

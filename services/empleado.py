@@ -1,3 +1,4 @@
+
 from schema.empleados_sch import empleados_schema
 from sqlmodel import Session, select
 from models.Empleado import Empleado
@@ -41,5 +42,3 @@ def delete_empleado(id:int, db:Session):
     db.delete(empleado_db)
     db.commit()
     return {"msg": "Empleado Eliminado"}
-
-

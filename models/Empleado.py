@@ -6,4 +6,3 @@ class Empleado(SQLModel, table = True):
     cargo: str
     ss: int
     sueldo: int
-

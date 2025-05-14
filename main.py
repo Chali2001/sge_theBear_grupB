@@ -1,4 +1,5 @@
 from typing import List
+from fastapi.middleware.cors import CORSMiddleware
 from services import empleado, cliente
 from fastapi import FastAPI, Depends
 from sqlmodel import SQLModel, create_engine, Session
@@ -7,6 +8,13 @@ from dotenv import load_dotenv
 import os
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost", "http://localhost:3000", "http://127.0.0.1", "*"],  # Ajusta según el origen del frontend
+    allow_credentials=True,
+    allow_methods=["*"],  # Permitir todos los métodos (GET, POST, PUT, DELETE, OPTIONS, etc.)
+    allow_headers=["*"],  # Permitir todos los headers
+)
 #Carrega variables d'entorn des del fitxer .env
 load_dotenv()
 

@@ -1,3 +1,4 @@
+
 def cliente_schema(cliente) -> dict:
     response = {"cliente":cliente}
     return response

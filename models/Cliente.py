@@ -5,3 +5,4 @@ class Cliente(SQLModel, table = True):
     nombre: str
     telefono: str
 
+

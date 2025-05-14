@@ -5,44 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efa3dd3b-fb5e-45de-950f-5713d770d232" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/Clientes/clientes.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/Clientes/clientes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/Empleados/empleados.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/Empleados/empleados.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/Clientes/index_form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/Clientes/index_table.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/Clientes/style_form.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/Clientes/style_table.css" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/Empleados/empleados.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/Empleados/index_form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/Empleados/index_table.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/Empleados/style_form.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/Empleados/style_table.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fotos/update.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Cliente.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Empleado.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/Clientes/clientes.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/clientes_sch.py" beforeDir="false" afterPath="$PROJECT_DIR$/schema/clientes_sch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/empleados_sch.py" beforeDir="false" afterPath="$PROJECT_DIR$/schema/empleados_sch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/read_sch.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cliente.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/cliente.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/empleado.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/empleado.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/read.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/main_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/main_page.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/script_main_page.js" beforeDir="false" afterPath="$PROJECT_DIR$/sge_the_bear_frontend-main/script_main_page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/index_form.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/index_form_clients.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/index_form_empleats.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/index_table_clients.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/index_table_empleats.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/index_table_users.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/script_clients.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/script_empleats.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/script_form.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/script_form_clients.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/script_form_empleats.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/style_form.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/style_table.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sge_the_bear_frontend-main/ususaris/styles_main_page.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +43,9 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2x6Iv8cDiUysrtT303pgBQlpwc4" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />

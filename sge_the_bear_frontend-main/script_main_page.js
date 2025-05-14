@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Mòdul Punt de Venda
     const puntModule = document.getElementById('puntModule');
     puntModule.addEventListener('click', () => {
         window.location.href = 'Punt_de_venda/index_form.html';
@@ -11,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
         puntModule.style.borderColor = '#e0e0e0';
     });
 
-    // Mòdul Factura
     const facturaModule = document.getElementById('facturaModule');
     facturaModule.addEventListener('click', () => {
         window.location.href = 'Factura/index_form.html';
@@ -23,27 +21,25 @@ document.addEventListener('DOMContentLoaded', () => {
         facturaModule.style.borderColor = '#e0e0e0';
     });
 
-    // Mòdul Clients
-    const clientsModule = document.getElementById('clientsModule');
-    clientsModule.addEventListener('click', () => {
-        window.location.href = 'Clientes/clientes.html';
+    const clientesModule = document.getElementById('clientesModule');
+    clientesModule.addEventListener('click', () => {
+        window.location.href = 'Clientes/index_table.html';
     });
-    clientsModule.addEventListener('mouseenter', () => {
-        clientsModule.style.borderColor = '#714B67';
+    clientesModule.addEventListener('mouseenter', () => {
+        clientesModule.style.borderColor = '#714B67';
     });
-    clientsModule.addEventListener('mouseleave', () => {
-        clientsModule.style.borderColor = '#e0e0e0';
+    clientesModule.addEventListener('mouseleave', () => {
+        clientesModule.style.borderColor = '#e0e0e0';
     });
 
-    // Mòdul Empleats
-    const empleatsModule = document.getElementById('empleatsModule');
-    empleatsModule.addEventListener('click', () => {
-        window.location.href = 'Empleados/empleados.html';
+    const empleadosModule = document.getElementById('empleadosModule');
+    empleadosModule.addEventListener('click', () => {
+        window.location.href = 'Empleados/index_table.html';
     });
-    empleatsModule.addEventListener('mouseenter', () => {
-        empleatsModule.style.borderColor = '#714B67';
+    empleadosModule.addEventListener('mouseenter', () => {
+        empleadosModule.style.borderColor = '#714B67';
     });
-    empleatsModule.addEventListener('mouseleave', () => {
-        empleatsModule.style.borderColor = '#e0e0e0';
+    empleadosModule.addEventListener('mouseleave', () => {
+        empleadosModule.style.borderColor = '#e0e0e0';
     });
 });

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Llista de Clients</title>
+    <link rel="stylesheet" href="style_form.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .action-buttons button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="erp-container">
+        <header class="erp-header">
+            <div class="erp-logo">ERP System</div>
+            <nav class="erp-nav">
+                <a href="../main_page.html">Inici</a>
+                <a href="index_form_ventes.html">Vendes</a>
+                <a href="index_form.html">Usuaris</a>
+                <a href="index_form_empleats.html">Empleats</a>
+                <a href="index_form_clients.html">Clients</a>
+                <a href="index_form_inventari.html">Inventari</a>
+            </nav>
+            <div class="erp-user">Admin</div>
+        </header>
+        <div class="container">
+            <h1>Llista de Clients</h1>
+            <div class="action-buttons">
+                <button><a href="index_form_clients.html" class="action-btn">AFEGIR CLIENT</a></button>
+            </div>
+            <table id="clientsTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Telèfon</th>
+                        <th>Accions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Les dades s'inseriran aquí dinàmicament -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script_clients.js"></script>
+</body>
+</html>

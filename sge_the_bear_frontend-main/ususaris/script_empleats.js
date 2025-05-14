@@ -1,50 +1,50 @@
 const API_URL = "http://localhost:8000/empleados";
 
-async function fetchEmpleados() {
+async function fetchEmpleats() {
     try {
         const response = await fetch(API_URL);
         if (!response.ok) {
             throw new Error(`Error en la solicitud: ${response.status}`);
         }
-        const empleados = await response.json();
-        displayEmpleados(empleados);
+        const empleats = await response.json();
+        displayEmpleats(empleats);
     } catch (error) {
         console.error("Error al obtenir els empleats:", error);
     }
 }
 
-function displayEmpleados(empleados) {
-    const tableBody = document.querySelector("#empleadosTable tbody");
+function displayEmpleats(empleats) {
+    const tableBody = document.querySelector("#empleatsTable tbody");
     tableBody.innerHTML = "";
 
-    empleados.forEach(data => {
-        const empleado = data.empleado;
+    empleats.forEach(data => {
+        const empleat = data.empleado;
         const row = document.createElement("tr");
 
         const idCell = document.createElement("td");
-        idCell.textContent = empleado.ID_empleado;
+        idCell.textContent = empleat.ID_empleado;
         row.appendChild(idCell);
 
         const nameCell = document.createElement("td");
-        nameCell.textContent = empleado.nombre;
+        nameCell.textContent = empleat.nombre;
         row.appendChild(nameCell);
 
-        const cargoCell = document.createElement("td");
-        cargoCell.textContent = empleado.cargo;
-        row.appendChild(cargoCell);
+        const carrecCell = document.createElement("td");
+        carrecCell.textContent = empleat.cargo;
+        row.appendChild(carrecCell);
 
         const ssCell = document.createElement("td");
-        ssCell.textContent = empleado.ss;
+        ssCell.textContent = empleat.ss;
         row.appendChild(ssCell);
 
-        const sueldoCell = document.createElement("td");
-        sueldoCell.textContent = empleado.sueldo;
-        row.appendChild(sueldoCell);
+        const souCell = document.createElement("td");
+        souCell.textContent = empleat.sueldo;
+        row.appendChild(souCell);
 
         const actionsCell = document.createElement("td");
         actionsCell.innerHTML = `
-            <button onclick="editEmpleado(${empleado.ID_empleado})">Editar</button>
-            <button onclick="deleteEmpleado(${empleado.ID_empleado})">Eliminar</button>
+            <button aria-label="Editar empleat ${empleat.nombre}" onclick="editEmpleat(${empleat.ID_empleado})">Editar</button>
+            <button aria-label="Eliminar empleat ${empleat.nombre}" onclick="deleteEmpleat(${empleat.ID_empleado})">Eliminar</button>
         `;
         row.appendChild(actionsCell);
 
@@ -52,11 +52,11 @@ function displayEmpleados(empleados) {
     });
 }
 
-function editEmpleado(id) {
-    window.location.href = `index_form_empleados.html?id=${id}`;
+function editEmpleat(id) {
+    window.location.href = `index_form_empleats.html?id=${id}`;
 }
 
-async function deleteEmpleado(id) {
+async function deleteEmpleat(id) {
     if (confirm("Estàs segur d'eliminar aquest empleat?")) {
         try {
             const response = await fetch(`http://localhost:8000/empleado/delete/${id}`, {
@@ -64,7 +64,7 @@ async function deleteEmpleado(id) {
             });
             if (response.ok) {
                 alert("Empleat eliminat correctament!");
-                fetchEmpleados();
+                fetchEmpleats();
             } else {
                 alert("Error al eliminar l'empleat.");
             }
@@ -74,4 +74,4 @@ async function deleteEmpleado(id) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", fetchEmpleados);
+document.addEventListener("DOMContentLoaded", fetchEmpleats);

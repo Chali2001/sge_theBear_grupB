@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Nou Empleat</title>
+    <link rel="stylesheet" href="style_form.css">
+</head>
+<body>
+    <div class="erp-container">
+        <!-- Capçalera Odoo-style -->
+        <header class="erp-header">
+            <div class="erp-logo">ERP System</div>
+            <nav class="erp-nav">
+                <a href="../main_page.html">Inici</a>
+                <a href="index_form_ventes.html">Vendes</a>
+                <a href="index_form.html">Usuaris</a>
+                <a href="index_form_empleats.html">Empleats</a>
+                <a href="index_form_clients.html">Clients</a>
+                <a href="index_form_inventari.html">Inventari</a>
+            </nav>
+            <div class="erp-user">Admin</div>
+        </header>
+        <div class="container">
+            <h1>Crear Nou Empleat</h1>
+            <form id="empleatForm">
+                <div class="form-group">
+                    <label for="id_empleat">ID Empleat:</label>
+                    <input type="number" id="id_empleat" name="id_empleat" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="nom">Nom:</label>
+                    <input type="text" id="nom" name="nom" required>
+                </div>
+                <div class="form-group">
+                    <label for="carrec">Càrrec:</label>
+                    <input type="text" id="carrec" name="carrec" required>
+                </div>
+                <div class="form-group">
+                    <label for="ss">Número de Seguretat Social:</label>
+                    <input type="number" id="ss" name="ss" required>
+                </div>
+                <div class="form-group">
+                    <label for="sou">Sou:</label>
+                    <input type="number" id="sou" name="sou" min="0" required>
+                </div>
+                <button type="submit">Crear Empleat</button>
+                <br><br>
+                <div class="action-buttons">
+                    <button><a href="index_table_empleats.html" class="action-btn">MOSTRAR TAULA EMPLEATS</a></button>
+                </div>
+            </form>
+            <div id="message" class="message"></div>
+        </div>
+    </div>
+
+    <script src="script_form_empleats.js"></script>
+</body>
+</html>

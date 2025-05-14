@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Nou Client</title>
+    <link rel="stylesheet" href="style_form.css">
+</head>
+<body>
+    <div class="erp-container">
+        <!-- Capçalera Odoo-style -->
+        <header class="erp-header">
+            <div class="erp-logo">ERP System</div>
+            <nav class="erp-nav">
+                <a href="../main_page.html">Inici</a>
+                <a href="index_form_ventes.html">Vendes</a>
+                <a href="index_form.html">Usuaris</a>
+                <a href="index_form_empleats.html">Empleats</a>
+                <a href="index_form_clients.html">Clients</a>
+                <a href="index_form_inventari.html">Inventari</a>
+            </nav>
+            <div class="erp-user">Admin</div>
+        </header>
+        <div class="container">
+            <h1>Crear Nou Client</h1>
+            <form id="clientForm">
+                <div class="form-group">
+                    <label for="id_client">ID Client:</label>
+                    <input type="number" id="id_client" name="id_client" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="nom">Nom:</label>
+                    <input type="text" id="nom" name="nom" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefon">Telèfon:</label>
+                    <input type="text" id="telefon" name="telefon" required>
+                </div>
+                <button type="submit">Crear Client</button>
+                <br><br>
+                <div class="action-buttons">
+                    <button><a href="index_table_clients.html" class="action-btn">MOSTRAR TAULA CLIENTS</a></button>
+                </div>
+            </form>
+            <div id="message" class="message"></div>
+        </div>
+    </div>
+
+    <script src="script_form_clients.js"></script>
+</body>
+</html>

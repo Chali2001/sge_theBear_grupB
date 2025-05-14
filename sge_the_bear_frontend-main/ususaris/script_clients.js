@@ -1,44 +1,42 @@
-const API
+const API_URL = "http://localhost:8000/clientes";
 
-_URL = "http://localhost:8000/clientes";
-
-async function fetchClientes() {
+async function fetchClients() {
     try {
         const response = await fetch(API_URL);
         if (!response.ok) {
             throw new Error(`Error en la solicitud: ${response.status}`);
         }
-        const clientes = await response.json();
-        displayClientes(clientes);
+        const clients = await response.json();
+        displayClients(clients);
     } catch (error) {
         console.error("Error al obtenir els clients:", error);
     }
 }
 
-function displayClientes(clientes) {
-    const tableBody = document.querySelector("#clientesTable tbody");
+function displayClients(clients) {
+    const tableBody = document.querySelector("#clientsTable tbody");
     tableBody.innerHTML = "";
 
-    clientes.forEach(data => {
-        const cliente = data.cliente;
+    clients.forEach(data => {
+        const client = data.cliente;
         const row = document.createElement("tr");
 
         const idCell = document.createElement("td");
-        idCell.textContent = cliente.ID_cliente;
+        idCell.textContent = client.ID_cliente;
         row.appendChild(idCell);
 
         const nameCell = document.createElement("td");
-        nameCell.textContent = cliente.nombre;
+        nameCell.textContent = client.nombre;
         row.appendChild(nameCell);
 
-        const telefonoCell = document.createElement("td");
-        telefonoCell.textContent = cliente.telefono;
-        row.appendChild(telefonoCell);
+        const telefonCell = document.createElement("td");
+        telefonCell.textContent = client.telefono;
+        row.appendChild(telefonCell);
 
         const actionsCell = document.createElement("td");
         actionsCell.innerHTML = `
-            <button onclick="editCliente(${cliente.ID_cliente})">Editar</button>
-            <button onclick="deleteCliente(${cliente.ID_cliente})">Eliminar</button>
+            <button aria-label="Editar client ${client.nombre}" onclick="editClient(${client.ID_cliente})">Editar</button>
+            <button aria-label="Eliminar client ${client.nombre}" onclick="deleteClient(${client.ID_cliente})">Eliminar</button>
         `;
         row.appendChild(actionsCell);
 
@@ -46,11 +44,11 @@ function displayClientes(clientes) {
     });
 }
 
-function editCliente(id) {
-    window.location.href = `index_form_clientes.html?id=${id}`;
+function editClient(id) {
+    window.location.href = `index_form_clients.html?id=${id}`;
 }
 
-async function deleteCliente(id) {
+async function deleteClient(id) {
     if (confirm("Estàs segur d'eliminar aquest client?")) {
         try {
             const response = await fetch(`http://localhost:8000/cliente/delete/${id}`, {
@@ -58,7 +56,7 @@ async function deleteCliente(id) {
             });
             if (response.ok) {
                 alert("Client eliminat correctament!");
-                fetchClientes();
+                fetchClients();
             } else {
                 alert("Error al eliminar el client.");
             }
@@ -68,4 +66,4 @@ async function deleteCliente(id) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", fetchClientes);
+document.addEventListener("DOMContentLoaded", fetchClients);
